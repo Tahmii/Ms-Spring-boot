@@ -1,6 +1,8 @@
+version: '3.8'
+
 services:
   db:
-    container_name: postgres
+    container_name: 'postgres'
     image: postgres
     environment:
       POSTGRES_USER: omega
@@ -8,8 +10,21 @@ services:
       PGDATA: /data/postgres
     volumes:
       - db:/data/postgres
+      - ./src/main/resources/populate.sql:/docker-entrypoint-initdb.d/populate.sql
     ports:
-      - "5332:5432"
+      - "5432:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ms-sb@root.fr
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - "5050:80"
     networks:
       - db
     restart: unless-stopped

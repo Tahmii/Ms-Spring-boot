@@ -1,5 +1,7 @@
 .mvn/wrapper
-
+pgadmin-data
+init.sql
+db-data
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
