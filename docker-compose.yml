@@ -8,6 +8,9 @@ services:
       POSTGRES_USER: omega
       POSTGRES_PASSWORD: root
       PGDATA: /data/postgres
+      DATABASE_URL: jdbc:postgresql://db:5432/customer
+      DATABASE_USERNAME: omega
+      DATABASE_PASSWORD: root
     volumes:
       - db:/data/postgres
       - ./src/main/resources/populate.sql:/docker-entrypoint-initdb.d/populate.sql
